@@ -17,7 +17,10 @@ MongoClient.connect(url, (error, client) => {
 
     const db = client.db(database);
 
-    db.collection("tasks").find({ completed: true }).toArray((err, tasks) => {
-        console.log(tasks);
-    });
+    db.collection("tasks").updateOne({ description: "Task2" }, {
+        $set: {
+            completed: true
+        }
+    }).then(result => console.log(result))
+        .catch(err => console.log(err))
 })
