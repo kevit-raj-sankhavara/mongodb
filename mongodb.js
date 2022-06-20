@@ -16,4 +16,8 @@ MongoClient.connect(url, (error, client) => {
         return console.log(error);
 
     const db = client.db(database);
+
+    db.collection("tasks").find({ completed: true }).toArray((err, tasks) => {
+        console.log(tasks);
+    });
 })
