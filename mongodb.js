@@ -17,13 +17,8 @@ MongoClient.connect(url, (error, client) => {
 
     const db = client.db(database);
 
-    db.collection("tasks").updateMany({ completed: false }, {
-        $set: {
-            completed: true,
-        },
-        $unset: {
-            msg: ""
-        }
+    db.collection("tasks").deleteOne({
+        description: "Task1"
     }).then(result => console.log(result))
         .catch(err => console.log(err))
 })
